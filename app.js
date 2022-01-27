@@ -1,11 +1,9 @@
-const email = 'heyyoufucker@yahoo.com';
+let str = "00000A";
+let pattern = /[A-Fa-f0-9]+$/g;
 
-const pattern = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
-
-let res = email.match(pattern);
- 
-if (res){
-	console.log("valid Email");
+let res = str.match(pattern);
+if(res){
+	console.log("It is a hexadecimal");
 }else{
-	console.log("invalid Email");
+	console.log("Not a hexadecimal");
 }
