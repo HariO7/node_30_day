@@ -1,8 +1,11 @@
-var fs = require('fs');
-var filename = 'data.html';
-var str = fs.readFileSync(filename).toString();
-var pattern = /<li>/gim;
+const email = 'heyyoufucker@yahoo.com';
 
-var myarray = str.match( pattern );
-var len = myarray.length;
-console.log("Occurrences of pattern in the string is : " + len);
+const pattern = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+
+let res = email.match(pattern);
+ 
+if (res){
+	console.log("valid Email");
+}else{
+	console.log("invalid Email");
+}
