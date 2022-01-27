@@ -1,9 +1,13 @@
-let str = "Aa#";
-let pattern = /^(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{6,16}$/g;
+let fs = require('fs');
 
-let res = str.match(pattern);
-if(res){
-	console.log("It is a valild password");
-}else{
-	console.log("it is a invalid password");
-}
+const { Console } = require('console');
+
+const output = fs.createWriteStream('./stdout.log');
+const errOutput = fs.createWriteStream("./stderr.log");
+
+const print = new Console(output,errOutput);
+
+const roll = "890900";
+print.log('roll: %d',roll);
+print.log('This will be stored.')
+
