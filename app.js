@@ -1,13 +1,19 @@
-let fs = require('fs');
+arr =[2,4,6,8,10];
+arr2 =[3,5,7,9,22];
 
-const { Console } = require('console');
+function even(value){
+    if( (value%2) == 0){
+      return true;
+    }else{
 
-const output = fs.createWriteStream('./stdout.log');
-const errOutput = fs.createWriteStream("./stderr.log");
+      return false;
+    }
+}
 
-const print = new Console(output,errOutput);
+var out = arr.filter(even);
+var out2 = arr2.filter(even);
 
-const roll = "890900";
-print.log('roll: %d',roll);
-print.log('This will be stored.')
+console.log(out);
+console.log(out2);
+
 
