@@ -1,26 +1,37 @@
-// Including the required modules
-var crypto = require('crypto');
+// require fs module for file system
 var fs = require('fs');
+// write data to a file using writeable stream
+var wdata = "I am working with streams for the first time";
 
-//Algorithm to be used for HMAC
-var algorithm = 'md5';
-//Secret to be used with HMAC
-var secret ='Rj2895647';
-//creating hmac object
-var hmac = crypto.createHmac(algorithm, secret);
+var myWriteStream = fs.createWriteStream('aboutMe.txt');
 
-// reading the content of the file
-var filename = "data.txt";
-var file_data = fs.ReadStream(filename);
+// write data 
 
-//passing the data to be hashed
-file_data.on('data', function(data) {
-  hmac.update(data)
-})
+myWriteStream.write(wdata);
 
-//Creating the hmac in the required format and writing it in file
-file_data.on('end', function() {
-  var gen_hmac = hmac.digest('hex')
-  console.log('Hmac generated using ' + algorithm + ' \nHashed output is :  ' + gen_hmac + ' \nFile name is :  ' + filename);
-  fs.writeFileSync(filename, gen_hmac);
-})
+// done writing
+myWriteStream.end();
+
+// write handler for error event 
+myWriteStream.on('error', function(err){
+   console.log(err);
+});
+
+myWriteStream.on('finish', function() {
+    console.log("data written successfully using streams.");
+	console.log("Now trying to read the same file using read streams ");
+	var myReadStream = fs.createReadStream('aboutMe.txt');
+	// add handlers for our read stream
+	var rContents = '' // to hold the read contents;
+	myReadStream.on('data', function(chunk) {
+		rContents += chunk;
+	});
+	myReadStream.on('error', function(err){
+		console.log(err);
+	});
+	myReadStream.on('end',function(){
+		console.log('read: ' + rContents);
+	});
+	console.log('performed write and read using streams');
+
+});
