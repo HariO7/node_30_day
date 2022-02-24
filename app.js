@@ -1,37 +1,27 @@
-// require fs module for file system
+//Name of the File is  : blocking-code.js
 var fs = require('fs');
-// write data to a file using writeable stream
-var wdata = "I am working with streams for the first time";
 
-var myWriteStream = fs.createWriteStream('aboutMe.txt');
+//For calculating execution time
+var date1 = new Date();
+var time_start = date1.toLocaleTimeString();
+console.log("starting at: " + time_start);
+console.log("Let's start reading file");
 
-// write data 
 
-myWriteStream.write(wdata);
+//Name of the file to be read
+var filename = 'output.txt'; 
+//Reading file synchronously
+var content = fs.readFileSync(filename);
+console.log('Content : ' + content);
 
-// done writing
-myWriteStream.end();
 
-// write handler for error event 
-myWriteStream.on('error', function(err){
-   console.log(err);
-});
+//For calculating execution time
+var date2 = new Date();
+var time_end = date2.toLocaleTimeString();
+console.log("finishing at: " + time_end);
+var execution_time = time_end - time_start;
+console.log("Time for execution: " + execution_time );
 
-myWriteStream.on('finish', function() {
-    console.log("data written successfully using streams.");
-	console.log("Now trying to read the same file using read streams ");
-	var myReadStream = fs.createReadStream('aboutMe.txt');
-	// add handlers for our read stream
-	var rContents = '' // to hold the read contents;
-	myReadStream.on('data', function(chunk) {
-		rContents += chunk;
-	});
-	myReadStream.on('error', function(err){
-		console.log(err);
-	});
-	myReadStream.on('end',function(){
-		console.log('read: ' + rContents);
-	});
-	console.log('performed write and read using streams');
 
-});
+//Consider it some another task in queue
+console.log('Another task to be executed');
