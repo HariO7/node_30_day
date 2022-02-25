@@ -1,27 +1,4 @@
-//Name of the File is  : blocking-code.js
-var fs = require('fs');
+const querystring = require('querystring');
 
-//For calculating execution time
-var date1 = new Date();
-var time_start = date1.toLocaleTimeString();
-console.log("starting at: " + time_start);
-console.log("Let's start reading file");
-
-
-//Name of the file to be read
-var filename = 'output.txt'; 
-//Reading file synchronously
-var content = fs.readFileSync(filename);
-console.log('Content : ' + content);
-
-
-//For calculating execution time
-var date2 = new Date();
-var time_end = date2.toLocaleTimeString();
-console.log("finishing at: " + time_end);
-var execution_time = time_end - time_start;
-console.log("Time for execution: " + execution_time );
-
-
-//Consider it some another task in queue
-console.log('Another task to be executed');
+let value_json = querystring.parse('id=1&name=rj&name=njsera&tutorial=30daysofnode&creator=nodejsera')
+console.log(value_json);
